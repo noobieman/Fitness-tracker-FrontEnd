@@ -34,7 +34,7 @@ const TrainerHomePage = () => {
 
   const handleLogout = () => {    
     localStorage.removeItem("userToken");
-    navigate("/login");
+    navigate("/");
   };
   
   return (

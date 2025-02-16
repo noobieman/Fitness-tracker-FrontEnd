@@ -17,7 +17,7 @@ const UserDashboard = () => {
 
     const handleLogout = () => {    
         localStorage.removeItem("userToken");
-        navigate("/login");
+        navigate("/");
       };
   return (
     <div>
