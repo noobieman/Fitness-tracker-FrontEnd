@@ -23,6 +23,7 @@ function App() {
     <Router>
       <div className="container mt-4">
         <Routes>
+          //type
           <Route path="/signup" element={<Signup />} />
           <Route path="/" element={<LoginSelection />} />
           <Route path="/login/admin" element={<AdminLogin />} />
