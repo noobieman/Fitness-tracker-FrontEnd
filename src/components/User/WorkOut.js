@@ -9,7 +9,7 @@ const UserWorkoutPage = () => {
   useEffect(() => {
     const userId = localStorage.getItem("userToken");
     axios
-      .get(`http://localhost:5000/api/user/workout-plan`, {
+      .get(`${process.env.REACT_APP_API_URL}/api/user/workout-plan`, {
        headers: { Authorization: `Bearer ${userId}` },
       })
       .then((response) => {

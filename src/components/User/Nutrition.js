@@ -21,7 +21,7 @@ const UserNutritionPage = () => {
   }, []);
 
   const fetchMeals = () => {
-    axios.get("http://localhost:5000/api/user/my-meals", {
+    axios.get(`${process.env.REACT_APP_API_URL}/api/user/my-meals`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
     })
     .then(response => {
@@ -52,7 +52,7 @@ const UserNutritionPage = () => {
       setMessage("Please select a meal type and add at least one food item.");
       return;
     }
-    axios.post("http://localhost:5000/api/user/add-meal", { mealType, foodItems }, {
+    axios.post(`${process.env.REACT_APP_API_URL}/api/user/add-meal`, { mealType, foodItems }, {
       headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
     })
     .then(response => {
@@ -68,7 +68,7 @@ const UserNutritionPage = () => {
   };
 
   const handleDeleteMeal = (mealId) => {
-    axios.delete(`http://localhost:5000/api/user/delete-meal/${mealId}`, {
+    axios.delete(`${process.env.REACT_APP_API_URL}/api/user/delete-meal/${mealId}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
     })
     .then(() => {

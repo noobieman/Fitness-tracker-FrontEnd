@@ -10,7 +10,7 @@ const TrainerHomePage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/trainer/clients", {
+      .get(`${process.env.REACT_APP_API_URL}/api/trainer/clients`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((response) => {

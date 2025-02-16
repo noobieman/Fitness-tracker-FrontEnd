@@ -9,7 +9,7 @@ const UserAppointmentPage = () => {
   const [appointments, setAppointments] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/user/user/users", {
+    axios.get(`${process.env.REACT_APP_API_URL}/api/user/user/users`, {
       params: { role: "Trainer" },
       headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
     })
@@ -27,7 +27,7 @@ const UserAppointmentPage = () => {
   }, []);
 
   const fetchAppointments = () => {
-    axios.get("http://localhost:5000/api/user//my-appointments", {
+    axios.get(`${process.env.REACT_APP_API_URL}/api/user//my-appointments`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
     })
     .then(response => {
@@ -44,7 +44,7 @@ const UserAppointmentPage = () => {
       setMessage("Please select a trainer and date.");
       return;
     }
-    axios.post("http://localhost:5000/api/user/book", {
+    axios.post(`${process.env.REACT_APP_API_URL}/api/user/book`, {
       trainerId: selectedTrainer,
       date,
     }, {
@@ -61,7 +61,7 @@ const UserAppointmentPage = () => {
   };
 
   const handleDeleteAppointment = (appointmentId) => {
-    axios.delete(`http://localhost:5000/api/user/cancel/${appointmentId}`, {
+    axios.delete(`${process.env.REACT_APP_API_URL}/api/user/cancel/${appointmentId}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
     })
     .then(() => {

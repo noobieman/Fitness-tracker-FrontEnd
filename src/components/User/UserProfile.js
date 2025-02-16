@@ -9,7 +9,7 @@ const UserProfile = () => {
   const token = localStorage.getItem("userToken");
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/user/profile", {
+      .get(`${process.env.REACT_APP_API_URL}/api/user/profile`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -30,7 +30,7 @@ const UserProfile = () => {
   const handleSave = () => {
     axios
       .put(
-        "http://localhost:5000/api/user/update-profile", // Correct endpoint
+        `${process.env.REACT_APP_API_URL}/api/user/update-profile`, // Correct endpoint
         formData, // Send only profile details
         { headers: {  Authorization: `Bearer ${token}` } }
       )

@@ -10,7 +10,7 @@ const NutritionPlanPage = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/trainer/user-diet/${clientId}`, {
+      .get(`${process.env.REACT_APP_API_URL}/api/trainer/user-diet/${clientId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((response) => {

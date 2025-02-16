@@ -22,7 +22,7 @@ const WorkoutPlanPage = () => {
   
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/trainer/${clientId}`, {
+      .get(`${process.env.REACT_APP_API_URL}/api/trainer/${clientId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((response) => {
@@ -42,7 +42,7 @@ const WorkoutPlanPage = () => {
   const handleAddWorkout = () => {
     setAdding(true);
     axios
-      .post("http://localhost:5000/api/trainer/workout", {
+      .post(`${process.env.REACT_APP_API_URL}/api/trainer/workout`, {
         clientId,
         exercises:[...newWorkout.exercises],
       }, {
@@ -70,7 +70,7 @@ const WorkoutPlanPage = () => {
  */
   const handleDeleteWorkout = (planId) => {
     axios
-      .delete(`http://localhost:5000/api/trainer/${planId}`, {
+      .delete(`${process.env.REACT_APP_API_URL}/api/trainer/${planId}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then(() => {
@@ -95,7 +95,7 @@ const WorkoutPlanPage = () => {
 
   const handleSaveEdit = () => {
     axios
-      .put(`http://localhost:5000/api/trainer/${editingPlan._id}`,  editingPlan, {
+      .put(`${process.env.REACT_APP_API_URL}/api/trainer/${editingPlan._id}`,  editingPlan, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       })
       .then((response) => {

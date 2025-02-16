@@ -21,7 +21,7 @@ const AdminUsers = () => {
 
   const fetchUsers = async (token) => {
     try {
-      const response = await axios.get("http://localhost:5000/api/admin/admin/users", {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/admin/users`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsers(response.data.data);
@@ -53,7 +53,7 @@ const AdminUsers = () => {
       console.log("Updating user:", editedData); // Debugging: Check request payload
 
       await axios.put(
-        `http://localhost:5000/api/admin/users/${userId}`,
+        `${process.env.REACT_APP_API_URL}/api/admin/users/${userId}`,
         { ...editedData }, // Send full edited data including role
         {
           headers: {
@@ -77,7 +77,7 @@ const AdminUsers = () => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/admin/users/${userId}`, {
+      await axios.delete(`${process.env.REACT_APP_API_URL}/api/admin/users/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

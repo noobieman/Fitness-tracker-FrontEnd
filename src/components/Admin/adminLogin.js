@@ -14,7 +14,7 @@ const AdminLogin = () => {
   
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/auth/login/Admin",
+        `${process.env.REACT_APP_API_URL}/api/auth/login/Admin`,
         { email, password },
         { withCredentials: true } // Ensure cookies are sent
       );

@@ -22,7 +22,7 @@ const AdminUsers = () => {
 
   const fetchUsers = async (token) => {
     try {
-      const response = await axios.get("http://localhost:5000/api/admin/users-with-trainers", {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/users-with-trainers`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setUsers(response.data.data);
@@ -34,7 +34,7 @@ const AdminUsers = () => {
 
   const fetchTrainers = async (token) => {
     try {
-      const response = await axios.get("http://localhost:5000/api/admin/admin/users?role=Trainer", {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/admin/admin/users?role=Trainer`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setTrainers(response.data.data);
@@ -48,7 +48,7 @@ const AdminUsers = () => {
     const token = localStorage.getItem("adminToken");
     try {
       await axios.put(
-        `http://localhost:5000/api/admin/assign-trainer`,
+        `${process.env.REACT_APP_API_URL}/api/admin/assign-trainer`,
         { userId: userId,
             trainerId: selectedTrainer[userId] },
         {
@@ -66,7 +66,7 @@ const AdminUsers = () => {
     const token = localStorage.getItem("adminToken");
     try {
       await axios.put(
-        `http://localhost:5000/api/admin/remove-trainer/${userId}`,
+        `${process.env.REACT_APP_API_URL}/api/admin/remove-trainer/${userId}`,
         {},
         { headers: { Authorization: `Bearer ${token}` } }
       );
