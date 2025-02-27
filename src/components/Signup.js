@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./Signup.css"; // Create this CSS file for custom styles
 
 const Signup = () => {
-  const [formData, setFormData] = useState({ name: "", email: "", password: "", role: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", password: "", role: "User" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
