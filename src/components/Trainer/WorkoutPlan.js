@@ -134,26 +134,70 @@ const WorkoutPlanPage = () => {
                   updatedExercises[index].name = e.target.value;
                   setNewWorkout({ ...newWorkout, exercises: updatedExercises });
                 }} />
-                <input type="number" placeholder="Sets" value={exercise.sets} onChange={(e) => {
-                  const updatedExercises = [...newWorkout.exercises];
-                  updatedExercises[index].sets = e.target.value;
-                  setNewWorkout({ ...newWorkout, exercises: updatedExercises });
-                }} />
-                <input type="number" placeholder="Reps" value={exercise.reps} onChange={(e) => {
-                  const updatedExercises = [...newWorkout.exercises];
-                  updatedExercises[index].reps = e.target.value;
-                  setNewWorkout({ ...newWorkout, exercises: updatedExercises });
-                }} />
-                <input type="text" placeholder="Duration" value={exercise.duration} onChange={(e) => {
-                  const updatedExercises = [...newWorkout.exercises];
-                  updatedExercises[index].duration = e.target.value;
-                  setNewWorkout({ ...newWorkout, exercises: updatedExercises });
-                }} />
-                <input type="number" placeholder="Weight" value={exercise.weight} onChange={(e) => {
-                  const updatedExercises = [...newWorkout.exercises];
-                  updatedExercises[index].weight = e.target.value;
-                  setNewWorkout({ ...newWorkout, exercises: updatedExercises });
-                }} />
+               <input
+  type="number"
+  min="1"
+  placeholder="Sets"
+  value={exercise.sets}
+  onChange={(e) => {
+    const updatedExercises = [...newWorkout.exercises];
+    updatedExercises[index].sets = e.target.value.replace(/\D/, ""); // Allow only numbers
+    setNewWorkout({ ...newWorkout, exercises: updatedExercises });
+  }}
+  onKeyDown={(e) => {
+    if (!/[0-9]/.test(e.key) && !["Backspace", "ArrowLeft", "ArrowRight", "Delete"].includes(e.key)) {
+      e.preventDefault();
+    }
+  }}
+/>
+<input
+  type="number"
+  min="1"
+  placeholder="Reps"
+  value={exercise.reps}
+  onChange={(e) => {
+    const updatedExercises = [...newWorkout.exercises];
+    updatedExercises[index].reps = e.target.value.replace(/\D/, ""); // Allow only numbers
+    setNewWorkout({ ...newWorkout, exercises: updatedExercises });
+  }}
+  onKeyDown={(e) => {
+    if (!/[0-9]/.test(e.key) && !["Backspace", "ArrowLeft", "ArrowRight", "Delete"].includes(e.key)) {
+      e.preventDefault();
+    }
+  }}
+/>
+<input
+  type="number"
+  min="1"
+  placeholder="Duration"
+  value={exercise.duration}
+  onChange={(e) => {
+    const updatedExercises = [...newWorkout.exercises];
+    updatedExercises[index].duration = e.target.value.replace(/\D/, ""); // Allow only numbers
+    setNewWorkout({ ...newWorkout, exercises: updatedExercises });
+  }}
+  onKeyDown={(e) => {
+    if (!/[0-9]/.test(e.key) && !["Backspace", "ArrowLeft", "ArrowRight", "Delete"].includes(e.key)) {
+      e.preventDefault();
+    }
+  }}
+/>
+<input
+  type="number"
+  min="1"
+  placeholder="Weight"
+  value={exercise.weight}
+  onChange={(e) => {
+    const updatedExercises = [...newWorkout.exercises];
+    updatedExercises[index].weight = e.target.value.replace(/\D/, ""); // Allow only numbers
+    setNewWorkout({ ...newWorkout, exercises: updatedExercises });
+  }}
+  onKeyDown={(e) => {
+    if (!/[0-9]/.test(e.key) && !["Backspace", "ArrowLeft", "ArrowRight", "Delete"].includes(e.key)) {
+      e.preventDefault();
+    }
+  }}
+/>
               </div>
             ))}
             <button className="btn btn-primary" onClick={handleAddWorkout} disabled={adding}>Add Workout</button>

@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./AdminHome.css";
 
 const AdminHome = () => {
   const navigate = useNavigate();
@@ -20,7 +21,7 @@ const AdminHome = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-5 admin-dashboard">
       <h1 className="text-center mb-4">Admin Dashboard</h1>
       
       <div className="row justify-content-center g-4">
@@ -53,4 +54,3 @@ const AdminHome = () => {
 };
 
 export default AdminHome;
-

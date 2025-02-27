@@ -1,0 +1,125 @@
+/* Reuse the same styles from LoginSelection.css */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    color: #333333;
+    margin: 0; /* Reset margin for better control */
+    padding: 0; /* Reset padding for better control */
+  }
+  
+  .website-header {
+    background-color: #4caf50;
+    padding: 10px 20px; /* Reduced padding for smaller screens */
+    text-align: center; /* Centered for mobile */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .website-name {
+    font-family: 'Open Sans', sans-serif;
+    font-size: calc(20px + 1.5vw); /* Responsive font size */
+    font-weight: bold;
+    color: #ffffff;
+    margin: 0;
+  }
+  
+  .login-card {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Full width for smaller screens */
+    max-width: 400px; /* Max width for larger screens */
+    margin: 20px auto; /* Center the card */
+  }
+  
+  .login-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card-title {
+    font-size: 18px; /* Smaller base size */
+    font-weight: bold;
+    color: #4caf50;
+  }
+  
+  .card-text {
+    font-size: 14px; /* Smaller base size for text */
+    color: #666666;
+  }
+  
+  .primary-button {
+    background-color: #4caf50;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Full width buttons for touch devices */
+  }
+  
+  .primary-button:hover {
+    background-color: #45a049;
+  }
+  
+  .alert-danger {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #c62828;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 16px;
+  }
+  
+  .content {
+    display: flex;
+    justify-content: center;
+    /* Removed relative positioning and right shift */
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .website-header {
+      padding: 5px 10px; /* Even smaller padding */
+    }
+    
+    .website-name {
+      font-size: calc(18px + 2vw); /* Even more responsive */
+    }
+    
+    .login-card {
+      width: 95%; /* Wider on smaller screens */
+    }
+    
+    .card-title {
+      font-size: 16px;
+    }
+    
+    .card-text {
+      font-size: 13px;
+    }
+    
+    .primary-button {
+      font-size: 14px;
+      padding: 8px 16px;
+    }
+  }
+  
+  /* Additional media query for very small screens */
+  @media (max-width: 480px) {
+    .login-card {
+      border-radius: 0; /* No border-radius for smallest screens */
+    }
+    
+    .card-body {
+      padding: 15px;
+    }
+  }

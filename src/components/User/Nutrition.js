@@ -81,6 +81,13 @@ const UserNutritionPage = () => {
     });
   };
 
+  const updateValue = (field, amount) => {
+    setNewFoodItem((prev) => ({
+      ...prev,
+      [field]: Math.max(0, prev[field] + amount) // Prevents negative values
+    }));
+  };
+
   return (
     <div className="container mt-4">
       <h2>Create a Meal</h2>
@@ -102,15 +109,40 @@ const UserNutritionPage = () => {
         </Dropdown>
       </div>
 
-      {/* Add Food Items */}
-      <h4>Add Food Items</h4>
+        {/* Add Food Items */}
+        <h4>Add Food Items</h4>
       <div className="mb-3">
         <input type="text" placeholder="Name" className="form-control mb-2" value={newFoodItem.name} onChange={(e) => setNewFoodItem({ ...newFoodItem, name: e.target.value })} />
-        <input type="number" placeholder="Calories" className="form-control mb-2" value={newFoodItem.calories} onChange={(e) => setNewFoodItem({ ...newFoodItem, calories: e.target.value })} />
-        <input type="number" placeholder="Protein (g)" className="form-control mb-2" value={newFoodItem.protein} onChange={(e) => setNewFoodItem({ ...newFoodItem, protein: e.target.value })} />
-        <input type="number" placeholder="Carbs (g)" className="form-control mb-2" value={newFoodItem.carbs} onChange={(e) => setNewFoodItem({ ...newFoodItem, carbs: e.target.value })} />
-        <input type="number" placeholder="Fats (g)" className="form-control mb-2" value={newFoodItem.fats} onChange={(e) => setNewFoodItem({ ...newFoodItem, fats: e.target.value })} />
-        <button className="btn btn-secondary" onClick={handleAddFoodItem}>Add Food Item</button>
+        
+        {/* Calories */}
+        <div className="input-group mb-2">
+          <button className="btn btn-secondary" onClick={() => updateValue("calories", -1)}>-</button>
+          <input type="text" placeholder="calories" className="form-control text-center" readOnly value={newFoodItem.calories} />
+          <button className="btn btn-secondary" onClick={() => updateValue("calories", 1)}>+</button>
+        </div>
+
+        {/* Protein */}
+        <div className="input-group mb-2">
+          <button className="btn btn-secondary" onClick={() => updateValue("protein", -1)}>-</button>
+          <input type="text" placeholder="protein" className="form-control text-center" readOnly value={newFoodItem.protein} />
+          <button className="btn btn-secondary" onClick={() => updateValue("protein", 1)}>+</button>
+        </div>
+
+        {/* Carbs */}
+        <div className="input-group mb-2">
+          <button className="btn btn-secondary" onClick={() => updateValue("carbs", -1)}>-</button>
+          <input type="text" placeholder="carbs" className="form-control text-center" readOnly value={newFoodItem.carbs} />
+          <button className="btn btn-secondary" onClick={() => updateValue("carbs", 1)}>+</button>
+        </div>
+
+        {/* Fats */}
+        <div className="input-group mb-2">
+          <button className="btn btn-secondary" onClick={() => updateValue("fats", -1)}>-</button>
+          <input type="text" placeholder="fats" className="form-control text-center" readOnly value={newFoodItem.fats} />
+          <button className="btn btn-secondary" onClick={() => updateValue("fats", 1)}>+</button>
+        </div>
+
+        <button className="btn btn-secondary mt-2" onClick={handleAddFoodItem}>Add Food Item</button>
       </div>
 
       {/* Display Added Food Items */}

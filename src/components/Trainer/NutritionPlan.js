@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const NutritionPlanPage = () => {
   const { clientId } = useParams();
@@ -26,34 +27,43 @@ const NutritionPlanPage = () => {
 
   return (
     <div className="container mt-4">
-      <h2>Nutrition Plan</h2>
+      <h2 className="text-center mb-4">Nutrition Plan</h2>
       {loading ? (
-        <p>Loading nutrition plans...</p>
+        <div className="text-center">
+          <div className="spinner-border text-primary" role="status"></div>
+          <p className="mt-2">Loading nutrition plans...</p>
+        </div>
       ) : error ? (
-        <p className="text-danger">{error}</p>
+        <p className="text-danger text-center">{error}</p>
       ) : nutritionPlans.length > 0 ? (
-        <div>
+        <div className="row">
           {nutritionPlans.map((plan, index) => (
-            <div key={plan._id} className="mb-3 border p-3">
-              <h5>Plan {index + 1} (Created on: {new Date(plan.createdAt).toLocaleDateString()})</h5>
-              {plan.meals.map((meal) => (
-                <div key={meal._id} className="mb-2">
-                  <h6>{meal.mealType}</h6>
-                  <ul>
-                    {meal.foodItems.map((food) => (
-                      <li key={food._id}>
-                        {food.name} - {food.calories} kcal, {food.protein}g protein, {food.carbs}g carbs, {food.fats}g fats
-                      </li>
-                    ))}
-                  </ul>
-                  <p><strong>Total Calories:</strong> {meal.totalCalories} kcal</p>
+            <div key={plan._id} className="col-md-6">
+              <div className="card shadow-sm mb-4 border-0 rounded">
+                <div className="card-body">
+                  <h5 className="card-title">
+                    Plan {index + 1} <small className="text-muted">({new Date(plan.createdAt).toLocaleDateString()})</small>
+                  </h5>
+                  {plan.meals.map((meal) => (
+                    <div key={meal._id} className="mb-3">
+                      <h6 className="text-primary">{meal.mealType}</h6>
+                      <ul className="list-group">
+                        {meal.foodItems.map((food) => (
+                          <li key={food._id} className="list-group-item">
+                            <strong>{food.name}</strong> - {food.calories} kcal, {food.protein}g protein, {food.carbs}g carbs, {food.fats}g fats
+                          </li>
+                        ))}
+                      </ul>
+                      <p className="mt-2"><strong>Total Calories:</strong> {meal.totalCalories} kcal</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </div>
           ))}
         </div>
       ) : (
-        <p>No nutrition plan assigned yet.</p>
+        <p className="text-center">No nutrition plan assigned yet.</p>
       )}
     </div>
   );

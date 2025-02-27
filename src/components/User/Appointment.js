@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const UserAppointmentPage = () => {
   const [trainers, setTrainers] = useState([]);
@@ -27,7 +28,7 @@ const UserAppointmentPage = () => {
   }, []);
 
   const fetchAppointments = () => {
-    axios.get(`${process.env.REACT_APP_API_URL}/api/user//my-appointments`, {
+    axios.get(`${process.env.REACT_APP_API_URL}/api/user/my-appointments`, {
       headers: { Authorization: `Bearer ${localStorage.getItem("userToken")}` }
     })
     .then(response => {
@@ -75,42 +76,53 @@ const UserAppointmentPage = () => {
   };
 
   return (
-    <div className="container mt-4">
-      <h2>Book an Appointment</h2>
-      {message && <p className="text-info">{message}</p>}
-      <div className="mb-3">
-        <label className="form-label">Select Trainer</label>
-        <select 
-          className="form-select" 
-          value={selectedTrainer} 
-          onChange={(e) => setSelectedTrainer(e.target.value)}
-        >
-          <option value="">Choose a trainer</option>
-          {trainers.map(trainer => (
-            <option key={trainer._id} value={trainer._id}>{trainer.name}</option>
-          ))}
-        </select>
+    <div className="container mt-5">
+      <h2 className="text-center mb-4">Book an Appointment</h2>
+      {message && <p className="text-info text-center">{message}</p>}
+      <div className="row justify-content-center">
+        <div className="col-md-6">
+          <div className="card shadow-lg border-0 rounded-lg p-4">
+            <div className="mb-3">
+              <label className="form-label">Select Trainer</label>
+              <select 
+                className="form-select" 
+                value={selectedTrainer} 
+                onChange={(e) => setSelectedTrainer(e.target.value)}
+              >
+                <option value="">Choose a trainer</option>
+                {trainers.map(trainer => (
+                  <option key={trainer._id} value={trainer._id}>{trainer.name}</option>
+                ))}
+              </select>
+            </div>
+            <div className="mb-3">
+              <label className="form-label">Select Date</label>
+              <input 
+                type="date" 
+                className="form-control" 
+                value={date} 
+                onChange={(e) => setDate(e.target.value)}
+              />
+            </div>
+            <button className="btn btn-primary w-100" onClick={handleBookAppointment}>Book Appointment</button>
+          </div>
+        </div>
       </div>
-      <div className="mb-3">
-        <label className="form-label">Select Date</label>
-        <input 
-          type="date" 
-          className="form-control" 
-          value={date} 
-          onChange={(e) => setDate(e.target.value)}
-        />
-      </div>
-      <button className="btn btn-primary" onClick={handleBookAppointment}>Book Appointment</button>
 
-      <h2 className="mt-4">Your Appointments</h2>
-      <ul className="list-group">
-        {appointments.map(appointment => (
-          <li key={appointment._id} className="list-group-item d-flex justify-content-between align-items-center">
-            Trainer: {appointment.trainer?.name || "Unknown"} | Date: {appointment.date}
-            <button className="btn btn-danger btn-sm" onClick={() => handleDeleteAppointment(appointment._id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      <h2 className="text-center mt-5">Your Appointments</h2>
+      <div className="row justify-content-center">
+        <div className="col-md-8">
+          <ul className="list-group">
+            {appointments.map(appointment => (
+              <li key={appointment._id} className="list-group-item d-flex justify-content-between align-items-center">
+                <span><strong>Trainer:</strong> {appointment.trainerId?.name || "Unknown"} | <strong>Date:</strong> {new Date(appointment.date).toLocaleDateString("en-GB")}</span>
+
+                <button className="btn btn-danger btn-sm" onClick={() => handleDeleteAppointment(appointment._id)}>Delete</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

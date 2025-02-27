@@ -1,0 +1,50 @@
+/* Add this to your existing CSS file or create a new one for this component */
+
+.admin-dashboard {
+    background-color: #f8f9fa; /* Light grey background for the entire dashboard */
+  }
+  
+  .admin-dashboard h1 {
+    color: #343a40; /* Dark text for the header */
+  }
+  
+  .card {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .card h4 {
+    color: #4e73df; /* A blue-ish color for titles inside cards */
+  }
+  
+  .card p {
+    color: #6c757d; /* Grey text for descriptions */
+  }
+  
+  .btn-primary {
+    background-color: #4e73df;
+    border-color: #4e73df;
+  }
+  
+  .btn-primary:hover {
+    background-color: #2e59d9;
+    border-color: #2e59d9;
+  }
+  
+  .btn-danger {
+    background-color: #e74a3b;
+    border-color: #e74a3b;
+  }
+  
+  .btn-danger:hover {
+    background-color: #d52a1a;
+    border-color: #d52a1a;
+  }

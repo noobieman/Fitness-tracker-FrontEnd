@@ -7,6 +7,7 @@ const AdminUsers = () => {
   const [users, setUsers] = useState([]);
   const [trainers, setTrainers] = useState([]);
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const [selectedTrainer, setSelectedTrainer] = useState({});
   const navigate = useNavigate();
 
@@ -56,6 +57,7 @@ const AdminUsers = () => {
         }
       );
       fetchUsers(token);
+      alert("Trainer assigned successfully!");
     } catch (error) {
       setError("Failed to assign trainer");
     }
@@ -71,6 +73,7 @@ const AdminUsers = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       fetchUsers(token); // Refresh user list after removal
+      alert("Trainer removed successfully!");
     } catch (error) {
       setError("Failed to remove trainer");
     }
@@ -81,6 +84,7 @@ const AdminUsers = () => {
   return (
     <div className="container mt-5">
       <h2 className="mb-4">All Users</h2>
+
       {error && <p className="text-danger">{error}</p>}
       <table className="table table-bordered">
         <thead className="table-dark">
