@@ -158,28 +158,42 @@ const UserNutritionPage = () => {
       {/* Create Meal Button */}
       <button className="btn btn-primary mt-3" onClick={handleCreateMeal}>Create Meal</button>
 
-      {/* Display User's Meals */}
-      <h2 className="mt-4">My Meals</h2>
-      <ul className="list-group">
-        {meals.map((meal, index) => (
-          <li key={index} className="list-group-item">
-            <strong>{meal.mealType}</strong>
-            <ul>
-              {meal.meals && meal.meals.length > 0 ? (
-                meal.meals.map((m, i) => (
-                  m.foodItems.map((item, j) => (
-                    <li key={`${i}-${j}`}>{item.name} - {item.calories} cal, {item.protein}g Protein, {item.carbs}g Carbs, {item.fats}g Fats</li>
+     {/* Display User's Meals */}
+<h2 className="mt-4">My Meals</h2>
+<ul className="list-group">
+  {meals.map((mealLog, index) => (
+    <li key={mealLog._id} className="list-group-item">
+      <strong>Meal Log Date: {new Date(mealLog.createdAt).toDateString()}</strong>
+      <ul>
+        {mealLog.meals && mealLog.meals.length > 0 ? (
+          mealLog.meals.map((meal, i) => (
+            <li key={meal._id}>
+              <strong>{meal.mealType}</strong>
+              <ul>
+                {meal.foodItems && meal.foodItems.length > 0 ? (
+                  meal.foodItems.map((item) => (
+                    <li key={item._id}>
+                      {item.name} - {item.calories} cal, 
+                      {item.protein ? ` ${item.protein}g Protein,` : ""} 
+                      {item.carbs ? ` ${item.carbs}g Carbs,` : ""} 
+                      {item.fats ? ` ${item.fats}g Fats` : ""}
+                    </li>
                   ))
-                ))
-              ) : (
-                <li>No food items available</li>
-              )}
-              
-            </ul>
-            <button className="btn btn-danger btn-sm" onClick={() => handleDeleteMeal(meal._id)}>Delete</button>
-          </li>
-        ))}
+                ) : (
+                  <li>No food items available</li>
+                )}
+              </ul>
+            </li>
+          ))
+        ) : (
+          <li>No meals logged</li>
+        )}
       </ul>
+       <button className="btn btn-danger btn-sm" onClick={() => handleDeleteMeal(mealLog._id)}>Delete</button>
+    </li>
+  ))}
+</ul>
+
     </div>
   );
 };
