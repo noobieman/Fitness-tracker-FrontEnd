@@ -6,6 +6,7 @@ import "./Signup.css"; // Create this CSS file for custom styles
 
 const Signup = () => {
   const [formData, setFormData] = useState({ name: "", email: "", password: "", role: "User" });
+  const [loading, setLoading] = useState(false); // Define loading state
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -15,15 +16,35 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
+    setError(""); // Reset error state
+  
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/signup`, formData);
+      const response = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/auth/signup`,
+        formData
+      );
+  
       console.log(response.data);
-      navigate("/");
+      
+      // Redirect after successful signup
+      if (formData.role === "User") {
+        navigate("/login/user");
+      } else if (formData.role === "Trainer") {
+        navigate("/login/trainer");
+      } else if (formData.role === "Admin") {
+        navigate("/login/admin");
+      } else {
+        setError("Invalid role selected.");
+      }
     } catch (err) {
+      console.error("Signup Error:", err);
       setError(err.response?.data?.message || "Signup failed");
+    } finally {
+      setLoading(false);
     }
   };
-
+  
   return (
     <div className="signup-container">
       {/* Website Header */}
