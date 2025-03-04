@@ -38,6 +38,10 @@ const TrainerHomePage = () => {
     navigate("/");
   };
 
+  const handleViewAppointment = (clientId) => {
+    navigate(`/trainer/appointments`);
+  };
+
   return (
     <div className="container mt-5">
       <h2 className="text-center mb-4">Trainer Dashboard</h2>
@@ -47,6 +51,9 @@ const TrainerHomePage = () => {
         <p className="text-danger text-center">{error}</p>
       ) : clients.length > 0 ? (
         <div>
+           <button className="btn btn-danger px-4 mb-3" onClick={handleViewAppointment}>
+              View Appointments
+            </button>
           <h3 className="mb-3">Assigned Clients</h3>
           <ul className="list-group">
             {clients.map((client) => (

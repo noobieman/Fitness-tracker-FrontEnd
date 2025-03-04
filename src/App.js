@@ -17,6 +17,7 @@ import WorkoutPlanPage from "./components/Trainer/WorkoutPlan"
 import NutritionPlanPage from "./components/Trainer/NutritionPlan"
 import UserAppointmentPage from "./components/User/Appointment"
 import UserNutritionPage from "./components/User/Nutrition"
+import TrainerAppointment from "./components/Trainer/Appointments"
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
           <Route path="/trainer/dashboard" element={<TrainerHomePage />} />
           <Route path="/workout-plans/:clientId" element={<WorkoutPlanPage />} />
           <Route path="/nutrition-plans/:clientId" element={<NutritionPlanPage />} />
+          <Route path="/trainer/appointments" element={<TrainerAppointment />} />
         </Routes>
       </div>
     </Router>
